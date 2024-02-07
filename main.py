@@ -36,22 +36,57 @@ while True:
     choice = input("Enter your choice (1-5): ")
 
     if choice == '1':
-        # https://www.w3schools.com/python/python_dictionaries_access.asp
+        number = input('choose pokemon number: ')
+        x = pokemons[int(number)]
+        print(x)
         pass
     elif choice == '2':
-        # https://www.w3schools.com/python/python_lists_sort.asp
+        def myfunc(attacks):
+            return attacks['attack']
+        pokemons.sort(key = myfunc, reverse = True)
+        print(pokemons[0:9])
         pass
     elif choice == '3':
-        # https://www.w3schools.com/python/python_lists_sort.asp
+        def myfunc(attacks):
+            return attacks['attack']
+        pokemons.sort(key = myfunc)
+        print(pokemons[0:9])
         pass
     elif choice == '4':
-        # Battle
-        # https://www.w3schools.com/python/ref_random_choice.asp - random choice
-        # Computer choosing one random Pokemon from list
-        # Player choosing by entering Pokemon index
-        # Damage is calculated by: (attack of Pokemon 2) - (defense of Pokemon 1) + (random from 5 to 20), and vice-versa
-        # Player reaching 0 health - lost
-        pass
+        import random
+        pokemon1 = random.choice(pokemons)
+        print(pokemon1)
+
+        number = input('choose pokemon number: ')
+        pokemon2 = pokemons[int(number)]
+        print(pokemon2)
+
+        health1 = pokemon1["total"]
+        health2 = pokemon2["total"]
+
+#
+        while True:
+            import random
+            random_number = random.randint(1, 9)
+            print("Your random number is", random_number)
+
+            damage1 = int(pokemon2['attack']) -  int(pokemon1['defense']) + random_number
+            damage2 = int(pokemon1['attack']) -  int(pokemon2['defense']) + random_number
+            if damage1 < 0:
+                damage1 = 0
+            if damage2 < 0:
+                damage2 = 0    
+            health1 = health1 - damage1
+            health2 = health2 - damage2
+
+            if health1 < 0:
+                print("Pokemon 2 is winner;", "Pokemon 2 health is: ", health2)
+                break
+            elif health2 < 0:
+                print("Pokemon 1 is winner;", "Pokemon 1 health is: ", health1)
+                break
+            
+ #       pass
 
     elif choice == '5':
         print("Exiting")
